@@ -11,6 +11,7 @@ public class Station {
 	private Double airpressure;
 	private Integer relativehumidity;
 	private Double airtemperature;
+	private Double windchill;
 	private Integer winddirection;
 	private Double windspeed;
 	private Double windspeedmax;
@@ -79,6 +80,12 @@ public class Station {
 	public void setAirtemperature(Double airtemperature) {
 		this.airtemperature = airtemperature;
 	}
+	public Double getWindchill() {
+		return windchill;
+	}
+	public void setWindchill(Double windchill) {
+		this.windchill = windchill;
+	}
 	public Integer getWinddirection() {
 		return winddirection;
 	}
@@ -124,8 +131,24 @@ public class Station {
 	
     @Override
     public String toString() {
-        return "Station:: Name="+this.name+" Longitude=" + this.longitude + " Latitude=" + this.latitude + " Air temperature=" + this.airtemperature +
-                " Phenomenon=" + this.phenomenon + "\n";
+        return "Station:: Name="+this.name+
+        		" \r\nLongitude=" + this.longitude + 
+        		" \r\nLatitude=" + this.latitude + 
+        		" \r\nAir temperature=" + this.airtemperature +
+        		" \r\nWind chill=" + this.windchill +
+                " \r\nPhenomenon=" + this.phenomenon + "\n" +
+                " \r\nVisibility=" + this.visibility + "\n" +
+                " \r\nPrecipitations=" + this.precipitations + "\n" +
+                " \r\nAirpressure=" + this.airpressure + "\n" +
+                " \r\nRelativehumidity=" + this.relativehumidity + "\n" +
+                " \r\nAirtemperature=" + this.airtemperature + "\n" +
+                " \r\nWinddirection=" + this.winddirection + "\n" +
+                " \r\nWindspeed=" + this.windspeed + "\n" +
+                " \r\nWindspeedmax=" + this.windspeedmax + "\n" +
+                " \r\nWaterlevel=" + this.waterlevel + "\n" +
+                " \r\nWaterlevel_eh2000=" + this.waterlevel_eh2000 + "\n" +
+                " \r\nWatertemperature=" + this.watertemperature + "\n" +
+                " \r\nUvindex=" + this.uvindex + "\n";
     }
     
 }

@@ -30,34 +30,27 @@ public class WeatherController {
 		String urlStr = "http://www.ilmateenistus.ee/ilma_andmed/xml/observations.php";
     	StringBuffer results = new StringBuffer();
 		SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
-	    try {
+	    
+		try {
 	    	URL url = new URL(urlStr);
 	    	
 	    	HttpURLConnection httpcon = (HttpURLConnection) url.openConnection();
 	        httpcon.addRequestProperty("User-Agent", "Mozilla/4.0");
 	        
-	        
-	        
 	        SAXParser saxParser = saxParserFactory.newSAXParser();
 	        WeatherXMLHandler handler = new WeatherXMLHandler();
 	        saxParser.parse(new File("stations.xml"), handler);
 	        
-//	        XMLReader myReader = XMLReaderFactory.createXMLReader();
-//	        myReader.setErrorHandler(new WeatherErrorHandler(System.err));
-//	        myReader.setContentHandler(handler);
-//	        myReader.parse(new InputSource(httpcon.getInputStream()));
-
-
-//	        return getStringFromInputStream(httpcon.getInputStream());
-
 	        List<Station> stationList = handler.getStationList();
 	        
 	        if (stationList == null) {
 	        	return "EMPTY LIST";
 	        }
 	        
-	        for(Station stat : stationList)
-	            results.append(stat);
+	        for(Station stat : stationList) {
+	        	if (station.equals(stat.getName()) || station.equals("All"))
+	        		results.append(stat);
+	        }
 	        
 	        return results.toString();
 	    } catch (ParserConfigurationException | SAXException | IOException e) {

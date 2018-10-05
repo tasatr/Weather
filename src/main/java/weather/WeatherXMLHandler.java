@@ -85,6 +85,11 @@ public class WeatherXMLHandler extends DefaultHandler {
         if (qName.equalsIgnoreCase("station")) {
             //add station object to list
             stationList.add(station);
+            
+            //Calculate wind chill if possible
+            if (station.getAirtemperature() != null && station.getWindspeed() != null) {
+            	station.setWindchill(this.calculateWindchill(station.getAirtemperature(), station.getWindspeed()));
+            }
         }
     }
 
@@ -156,6 +161,10 @@ public class WeatherXMLHandler extends DefaultHandler {
     	if (str == null || str.trim().length() == 0) 
     		return null;
     	return Integer.valueOf(str);
+    }
+    
+    private Double calculateWindchill(Double airtemperature, Double windspeed) {
+    	return 13.12 + 0.6215*airtemperature - 11.37*Math.pow(windspeed, 0.16) + 0.3965*airtemperature*Math.pow(windspeed, 0.16);
     }
 
 }
