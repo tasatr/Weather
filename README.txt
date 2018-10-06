@@ -5,4 +5,4 @@ To run this service, execute the following command in command line, in project r
 
 This will run the tests, and if successful, will deploy the application by default to
 
-localhost:8080
+http://localhost:8080/weather?station=Tallinn-Harku
